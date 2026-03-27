@@ -1,0 +1,13 @@
+{
+  "name": "@irofi/oracle",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./src/index.ts",
+  "scripts": { "build": "tsc", "lint": "eslint src/" },
+  "dependencies": {
+    "@pythnetwork/price-service-client": "^0.5.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  }
+}
