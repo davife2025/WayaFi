@@ -1,0 +1,13 @@
+[workspace]
+members = [
+    "programs/stablecoin-token",
+    "programs/treasury-pool",
+    "programs/transfer-hook",
+    "programs/routing-logic",
+]
+resolver = "2"
+
+[profile.release]
+overflow-checks = true
+lto = "fat"
+codegen-units = 1
