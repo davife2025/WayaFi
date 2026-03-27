@@ -1,7 +1,27 @@
 {
-  "name": "@stablehacks/sdk",
-  "version": "0.0.1",
-  "private": true,
-  "main": "./src/index.ts",
-  "scripts": { "build": "tsc", "lint": "eslint src/" }
+  "name": "@irofi/sdk",
+  "version": "1.0.0",
+  "description": "Official TypeScript SDK for IroFi — Institutional cross-border stablecoin treasury",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts",
+    "dev": "tsup src/index.ts --format esm,cjs --dts --watch",
+    "lint": "eslint src/",
+    "test": "vitest run"
+  },
+  "keywords": ["irofi", "solana", "stablecoin", "usdc", "africa", "cross-border", "treasury"],
+  "license": "MIT",
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "typescript": "^5.4.0",
+    "vitest": "^1.0.0"
+  }
 }
