@@ -1,0 +1,14 @@
+[package]
+name = "routing-logic"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "routing_logic"
+
+[dependencies]
+anchor-lang = { version = "0.31.0", features = ["init-if-needed"] }
+anchor-spl  = { version = "0.31.0", features = ["token_2022", "token_2022_extensions"] }
+spl-token-2022 = { version = "3.0.0", features = ["no-entrypoint"] }
+spl-transfer-hook-interface = "0.6.0"

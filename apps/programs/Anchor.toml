@@ -6,10 +6,10 @@ resolution = true
 skip-lint = false
 
 [programs.devnet]
-stablecoin_token = "TokenProg11111111111111111111111111111111111"
-treasury_pool    = "TreasuryPo11111111111111111111111111111111111"
-transfer_hook    = "TransferHo11111111111111111111111111111111111"
-routing_logic    = "RoutingLog11111111111111111111111111111111111"
+stablecoin_token = "IroFiTokn1111111111111111111111111111111111"
+treasury_pool    = "IroFiPool1111111111111111111111111111111111"
+transfer_hook    = "IroFiHook1111111111111111111111111111111111"
+routing_logic    = "IroFiRout1111111111111111111111111111111111"
 
 [registry]
 url = "https://api.apr.dev"
