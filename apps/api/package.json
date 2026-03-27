@@ -1,22 +1,31 @@
 {
-  "name": "@stablehacks/api",
-  "version": "0.0.1",
+  "name": "@irofi/api",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
-    "lint": "eslint src/"
+    "lint": "eslint src/",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
     "fastify": "^4.26.0",
     "@fastify/jwt": "^8.0.0",
     "@fastify/cors": "^9.0.0",
+    "@fastify/rate-limit": "^9.0.0",
     "drizzle-orm": "^0.30.0",
-    "postgres": "^3.4.0"
+    "postgres": "^3.4.0",
+    "@solana/web3.js": "^2.0.0",
+    "tweetnacl": "^1.0.3",
+    "bs58": "^5.0.0",
+    "pino-pretty": "^11.0.0"
   },
   "devDependencies": {
+    "drizzle-kit": "^0.20.0",
     "tsx": "^4.7.0",
-    "typescript": "^5.4.0"
+    "typescript": "^5.4.0",
+    "@types/node": "^20.0.0"
   }
 }
