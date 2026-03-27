@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --irofi-green: #00D4A8;
+  --irofi-amber: #F59E0B;
+  --irofi-red: #EF4444;
+  --surface: #18181B;
+  --border: #3F3F46;
+}
+body { background: #09090B; }
+.irofi-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.status-dot.green { background: var(--irofi-green); box-shadow: 0 0 6px var(--irofi-green); }
+.status-dot.amber { background: var(--irofi-amber); }
+.status-dot.red   { background: var(--irofi-red); }
