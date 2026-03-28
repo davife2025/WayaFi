@@ -2,12 +2,18 @@
   "name": "@irofi/oracle",
   "version": "0.1.0",
   "private": true,
-  "main": "./src/index.ts",
-  "scripts": { "build": "tsc", "lint": "eslint src/" },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts --out-dir dist --no-splitting",
+    "lint": "echo lint"
+  },
   "dependencies": {
-    "@pythnetwork/price-service-client": "^0.5.0"
+    "@pythnetwork/price-service-client": "^1.11.0"
   },
   "devDependencies": {
-    "typescript": "^5.4.0"
+    "tsup": "^8.0.0",
+    "typescript": "^5.4.0",
+    "@types/node": "^20.0.0"
   }
 }

@@ -1,8 +1,0 @@
-{
-  "name": "@irofi/ramp",
-  "version": "0.1.0",
-  "private": true,
-  "main": "./src/index.ts",
-  "scripts": { "build": "tsc", "lint": "eslint src/" },
-  "devDependencies": { "typescript": "^5.4.0" }
-}

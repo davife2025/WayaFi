@@ -1,5 +1,5 @@
 {
-  "name": "stablehacks",
+  "name": "irofi",
   "private": true,
   "packageManager": "pnpm@9.0.0",
   "scripts": {
@@ -17,17 +17,13 @@
     "@typescript-eslint/parser": "^7.0.0",
     "@typescript-eslint/eslint-plugin": "^7.0.0"
   },
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/davife2025/WayaFi.git"
+ "pnpm": {
+  "overrides": {
+    "@solana/web3.js": "^1.95.3",
+    "react-native": "npm:@types/react-native@^0.73.0"
   },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/davife2025/WayaFi/issues"
-  },
-  "homepage": "https://github.com/davife2025/WayaFi#readme"
+  "neverBuiltDependencies": [
+    "@stellar/stellar-sdk"
+  ]
+}
 }

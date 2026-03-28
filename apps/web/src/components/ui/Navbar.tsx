@@ -2,41 +2,73 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import { useWallet } from "@solana/wallet-adapter-react";
 
 const NAV = [
-  { href: "/",           label: "Dashboard" },
-  { href: "/transfer",   label: "New Transfer" },
+  { href: "/",           label: "Treasury"   },
+  { href: "/transfer",   label: "Transfer"   },
   { href: "/compliance", label: "Compliance" },
-  { href: "/corridors",  label: "Corridors" },
 ];
 
+// Simulated live SOL block time — replace with real RPC call
+const BLOCK_TIME = "412ms";
+const SLOT = "301,847,291";
+
 export function Navbar() {
-  const path = usePathname();
+  const pathname = usePathname();
+  const { connected, publicKey } = useWallet();
+
   return (
-    <nav className="border-b border-zinc-800 bg-zinc-950/80 backdrop-blur sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <div className="flex items-center gap-8">
-          <Link href="/" className="font-bold text-xl tracking-tight" style={{ color: "var(--irofi-green)" }}>
-            IroFi
-          </Link>
-          <div className="hidden md:flex items-center gap-1">
-            {NAV.map((n) => (
-              <Link
-                key={n.href}
-                href={n.href}
-                className={`px-3 py-1.5 rounded-md text-sm transition-colors ${
-                  path === n.href
-                    ? "bg-zinc-800 text-white"
-                    : "text-zinc-400 hover:text-white hover:bg-zinc-800/50"
-                }`}
-              >
-                {n.label}
-              </Link>
-            ))}
-          </div>
-        </div>
-        <WalletMultiButton style={{ background: "#00D4A8", color: "#000", fontWeight: 600, borderRadius: 8, fontSize: 14 }} />
+    <header className="topbar">
+      {/* Logo */}
+      <div className="topbar-logo">
+        IRO<span>FI</span>
       </div>
-    </nav>
+
+      {/* Divider */}
+      <div style={{ width: 1, height: 20, background: "var(--border-2)", marginRight: "1.5rem" }} />
+
+      {/* Nav links */}
+      <nav className="topbar-nav">
+        {NAV.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className={`topbar-nav-item ${pathname === item.href ? "active" : ""}`}
+          >
+            {item.label}
+          </Link>
+        ))}
+      </nav>
+
+      {/* Right side */}
+      <div className="topbar-right">
+        {/* Network indicator */}
+        <div style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "0.5rem",
+          padding: "0.25rem 0.6rem",
+          background: "var(--bg-2)",
+          border: "1px solid var(--border)",
+          borderRadius: 3,
+        }}>
+          <span className="live-dot" />
+          <span style={{ fontSize: "0.67rem", color: "var(--text-3)", letterSpacing: "0.05em" }}>
+            SOL
+          </span>
+          <span style={{ fontSize: "0.67rem", color: "var(--teal)", fontWeight: 600 }}>
+            {BLOCK_TIME}
+          </span>
+          <span style={{ width: 1, height: 12, background: "var(--border)", display: "inline-block" }} />
+          <span style={{ fontSize: "0.67rem", color: "var(--text-3)" }}>
+            #{SLOT}
+          </span>
+        </div>
+
+        {/* Wallet button */}
+        <WalletMultiButton />
+      </div>
+    </header>
   );
 }

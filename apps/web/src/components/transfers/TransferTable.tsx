@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useTransfers } from "@/hooks/useTransfers";
+import type { TransferRow } from "@irofi/types";
 
 const STATUS_STYLES: Record<string, string> = {
   completed:   "bg-emerald-900/40 text-emerald-400",
@@ -49,7 +50,7 @@ export function TransferTable() {
                   <td colSpan={6} className="py-8 text-center text-zinc-500">No transfers yet</td>
                 </tr>
               ) : (
-                (data?.transfers ?? []).map((tx) => (
+                (data?.transfers ?? []).map((tx: TransferRow) => (  // ✅ typed here
                   <tr key={tx.transfer_id} className="hover:bg-zinc-800/30 transition-colors">
                     <td className="py-3 pr-4 font-mono text-xs text-zinc-400">{tx.transfer_id.slice(0, 12)}…</td>
                     <td className="py-3 pr-4 font-mono text-xs text-zinc-300">{tx.corridor}</td>

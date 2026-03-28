@@ -1,5 +1,6 @@
 "use client";
 import { useCorridors } from "@/hooks/useCorridors";
+import type { CorridorInfo } from "@irofi/types";
 
 const CORRIDOR_LABELS: Record<string, { from: string; to: string }> = {
   NG_KE: { from: "Nigeria 🇳🇬", to: "Kenya 🇰🇪" },
@@ -8,6 +9,8 @@ const CORRIDOR_LABELS: Record<string, { from: string; to: string }> = {
   KE_ZA: { from: "Kenya 🇰🇪",   to: "South Africa 🇿🇦" },
   KE_GH: { from: "Kenya 🇰🇪",   to: "Ghana 🇬🇭" },
 };
+
+// ❌ DELETE the local Corridor interface — CorridorInfo from @irofi/types replaces it
 
 export function CorridorCards() {
   const { data: corridors, isLoading } = useCorridors();
@@ -18,7 +21,7 @@ export function CorridorCards() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3">
         {isLoading
           ? [...Array(5)].map((_, i) => <div key={i} className="irofi-card animate-pulse h-32 bg-zinc-800" />)
-          : (corridors ?? []).map((corridor) => {
+          : (corridors ?? []).map((corridor: CorridorInfo) => {
               const label = CORRIDOR_LABELS[corridor.id];
               return (
                 <div key={corridor.id} className="irofi-card hover:border-zinc-500 transition-colors cursor-pointer">

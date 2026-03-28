@@ -33,3 +33,21 @@ export interface TransferRecord extends TransferRequest {
   created_at: Date;
   updated_at: Date;
 }
+
+
+export interface CorridorInfo {
+  id: Corridor;
+  total_liquidity_usdc: number;
+  fatf_grey_listed: boolean;
+  active: boolean;
+  fee_bps: number;
+}
+
+export interface TransferRow {
+  transfer_id: string;
+  corridor: Corridor;
+  amount_usdc: number;
+  status: TransferStatus;
+  total_duration_ms?: number;
+  initiated_at?: string;        // ISO string from the API
+}

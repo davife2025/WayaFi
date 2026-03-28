@@ -53,7 +53,10 @@ async function bootstrap() {
     }
     return reply.code(error.statusCode ?? 500).send({
       error: error.code ?? "INTERNAL_ERROR",
-      message: process.env.NODE_ENV === "production" ? "An internal error occurred" : error.message,
+      message:
+        process.env.NODE_ENV === "production"
+          ? "An internal error occurred"
+          : error.message,
     });
   });
 
@@ -62,5 +65,9 @@ async function bootstrap() {
   app.log.info(`IroFi API running on port ${port}`);
 }
 
-bootstrap().catch((err) => { console.error("Fatal startup error:", err); process.exit(1); });
+bootstrap().catch((err) => {
+  console.error("Fatal startup error:", err);
+  process.exit(1);
+});
+
 export { app };
