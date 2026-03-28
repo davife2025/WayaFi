@@ -9,11 +9,8 @@
     "lint": "echo lint"
   },
   "dependencies": {
-    "@solana/web3.js": "^1.95.3"
-  },
-  "devDependencies": {
+    "@solana/web3.js": "^1.95.3",
     "tsup": "^8.0.0",
-    "typescript": "^5.4.0",
-    "@types/node": "^20.0.0"
+    "typescript": "^5.4.0"
   }
 }

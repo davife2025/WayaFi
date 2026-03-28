@@ -5,9 +5,20 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".next/**"]
     },
-    "dev": { "cache": false, "persistent": true },
+    "build:vercel": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", ".next/**"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
     "lint": {},
-    "test": { "dependsOn": ["build"] },
-    "clean": { "cache": false }
+    "test": {
+      "dependsOn": ["build"]
+    },
+    "clean": {
+      "cache": false
+    }
   }
 }

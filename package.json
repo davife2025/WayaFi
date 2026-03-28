@@ -4,6 +4,7 @@
   "packageManager": "pnpm@9.0.0",
   "scripts": {
     "build": "turbo build",
+    "build:vercel": "turbo build --filter=@irofi/web...",
     "dev": "turbo dev",
     "lint": "turbo lint",
     "test": "turbo test",
@@ -18,13 +19,12 @@
     "@typescript-eslint/parser": "^7.0.0",
     "@typescript-eslint/eslint-plugin": "^7.0.0"
   },
- "pnpm": {
-  "overrides": {
-    "@solana/web3.js": "^1.95.3",
-    "react-native": "npm:@types/react-native@^0.73.0"
-  },
-  "neverBuiltDependencies": [
-    "@stellar/stellar-sdk"
-  ]
-}
+  "pnpm": {
+    "overrides": {
+      "@solana/web3.js": "^1.95.3"
+    },
+    "neverBuiltDependencies": [
+      "@stellar/stellar-sdk"
+    ]
+  }
 }
