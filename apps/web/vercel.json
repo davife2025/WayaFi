@@ -1,7 +1,7 @@
 {
   "framework": "nextjs",
   "installCommand": "pnpm install",
-  "buildCommand": "pnpm run build:vercel",
+  "buildCommand": "pnpm -w run build:vercel",
   "rewrites": [
     {
       "source": "/api/:path*",
