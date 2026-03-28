@@ -8,6 +8,7 @@ const NAV = [
   { href: "/",           label: "Treasury"   },
   { href: "/transfer",   label: "Transfer"   },
   { href: "/compliance", label: "Compliance" },
+    { href: "/corridors", label: "Corridor" },
 ];
 
 // Simulated live SOL block time — replace with real RPC call
@@ -22,7 +23,7 @@ export function Navbar() {
     <header className="topbar">
       {/* Logo */}
       <div className="topbar-logo">
-        IRO<span>FI</span>
+        Waya<span>Fi</span>
       </div>
 
       {/* Divider */}

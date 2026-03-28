@@ -1,57 +1,69 @@
 "use client";
 import { useTreasuryStats } from "@/hooks/useTreasuryStats";
 
-function StatCard({ label, value, sub, accent }: { label: string; value: string; sub?: string; accent?: string }) {
-  return (
-    <div className="irofi-card">
-      <p className="text-xs text-zinc-500 uppercase tracking-widest mb-1">{label}</p>
-      <p className="text-2xl font-bold text-white" style={accent ? { color: accent } : undefined}>{value}</p>
-      {sub && <p className="text-xs text-zinc-500 mt-1">{sub}</p>}
-    </div>
-  );
-}
+const TILES = [
+  {
+    key: "total_liquidity_usdc" as const,
+    label: "Total Liquidity",
+    format: (v: number) => `$${v.toLocaleString()}`,
+    sub: "USDC deployed",
+    accent: "teal",
+  },
+  {
+    key: "settled_30d_usdc" as const,
+    label: "Settled (30d)",
+    format: (v: number) => `$${v.toLocaleString()}`,
+    sub: "Net volume",
+    accent: "teal",
+  },
+  {
+    key: "pending_count" as const,
+    label: "Pending",
+    format: (v: number) => v.toString(),
+    sub: "In pipeline",
+    accent: "amber",
+  },
+  {
+    key: "avg_settlement_seconds" as const,
+    label: "Avg Settlement",
+    format: (v: number) => `${v}s`,
+    sub: "Target < 10s",
+    accent: "teal",
+  },
+];
 
 export function TreasuryOverview() {
   const { data, isLoading } = useTreasuryStats();
 
   if (isLoading) {
     return (
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "0.75rem" }}>
         {[...Array(4)].map((_, i) => (
-          <div key={i} className="irofi-card animate-pulse h-24 bg-zinc-800" />
+          <div key={i} className="skeleton" style={{ height: 88, borderRadius: 4 }} />
         ))}
       </div>
     );
   }
 
   return (
-    <div>
-      <h2 className="text-lg font-semibold text-white mb-4">Treasury Overview</h2>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <StatCard
-          label="Total Liquidity"
-          value={`$${(data?.total_liquidity_usdc ?? 0).toLocaleString()}`}
-          sub="USDC across all corridors"
-          accent="var(--irofi-green)"
-        />
-        <StatCard
-          label="Settled (30d)"
-          value={`$${(data?.settled_30d_usdc ?? 0).toLocaleString()}`}
-          sub="Net settled volume"
-        />
-        <StatCard
-          label="Pending"
-          value={data?.pending_count?.toString() ?? "0"}
-          sub="Transfers in pipeline"
-          accent="var(--irofi-amber)"
-        />
-        <StatCard
-          label="Avg Settlement"
-          value={`${data?.avg_settlement_seconds ?? 0}s`}
-          sub="End-to-end (target < 10s)"
-          accent="var(--irofi-green)"
-        />
-      </div>
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "0.75rem" }}>
+      {TILES.map((tile) => {
+        const raw = (data as any)?.[tile.key] ?? 0;
+        return (
+          <div key={tile.key} className="stat-tile">
+            <div className="stat-label">{tile.label}</div>
+            <div
+              className="stat-value tabular"
+              style={{ color: tile.accent === "amber" ? "var(--amber)" : "var(--text)" }}
+            >
+              {tile.format(raw)}
+            </div>
+            <div className={`stat-delta ${tile.accent === "amber" ? "neu" : ""}`}>
+              {tile.sub}
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }

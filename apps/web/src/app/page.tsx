@@ -55,7 +55,7 @@ function ConnectGate() {
           fontSize: "2.2rem", letterSpacing: "-0.04em",
           color: "var(--text)", lineHeight: 1, marginBottom: "0.75rem",
         }}>
-          IroFi Treasury
+          WayaFi Treasury
         </h1>
 
         <p style={{ color: "var(--text-2)", fontSize: "0.88rem", lineHeight: 1.6, marginBottom: "2.5rem" }}>

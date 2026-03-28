@@ -3,76 +3,97 @@ import Link from "next/link";
 import { useTransfers } from "@/hooks/useTransfers";
 import type { TransferRow } from "@irofi/types";
 
-const STATUS_STYLES: Record<string, string> = {
-  completed:   "bg-emerald-900/40 text-emerald-400",
-  held:        "bg-amber-900/40 text-amber-400",
-  failed:      "bg-red-900/40 text-red-400",
-  initiated:   "bg-zinc-800 text-zinc-400",
-  on_chain:    "bg-blue-900/40 text-blue-400",
-  travel_rule: "bg-purple-900/40 text-purple-400",
+const STATUS_CONFIG: Record<string, { label: string; cls: string }> = {
+  completed:   { label: "Settled",      cls: "badge-teal"  },
+  held:        { label: "Held",         cls: "badge-amber" },
+  failed:      { label: "Failed",       cls: "badge-red"   },
+  initiated:   { label: "Initiated",    cls: "badge-ghost" },
+  on_chain:    { label: "On-Chain",     cls: "badge-blue"  },
+  travel_rule: { label: "Travel Rule",  cls: "badge-sol"   },
+  kyc_check:   { label: "KYC Check",   cls: "badge-amber" },
+  kyt_check:   { label: "KYT Check",   cls: "badge-amber" },
+  settling:    { label: "Settling",     cls: "badge-blue"  },
 };
 
 export function TransferTable() {
   const { data, isLoading } = useTransfers();
+  const transfers: TransferRow[] = data?.transfers ?? [];
 
   return (
-    <div className="irofi-card">
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-semibold text-white">Recent Transfers</h2>
-        <Link
-          href="/transfer"
-          className="text-sm px-3 py-1.5 rounded-lg font-medium transition-colors"
-          style={{ background: "var(--irofi-green)", color: "#000" }}
-        >
+    <div className="card">
+      {/* Header */}
+      <div className="card-header">
+        <span className="card-title">Recent Transfers</span>
+        <Link href="/transfer" className="btn btn-primary" style={{ padding: "0.3rem 0.75rem", fontSize: "0.7rem" }}>
           + New Transfer
         </Link>
       </div>
 
-      {isLoading ? (
-        <div className="space-y-3">
-          {[...Array(5)].map((_, i) => (
-            <div key={i} className="h-12 bg-zinc-800 rounded-lg animate-pulse" />
-          ))}
-        </div>
-      ) : (
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
+      {/* Table */}
+      <div style={{ overflowX: "auto" }}>
+        {isLoading ? (
+          <div style={{ padding: "1rem", display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+            {[...Array(5)].map((_, i) => (
+              <div key={i} className="skeleton" style={{ height: 36, borderRadius: 3 }} />
+            ))}
+          </div>
+        ) : (
+          <table className="data-table">
             <thead>
-              <tr className="border-b border-zinc-800">
-                {["Transfer ID", "Corridor", "Amount", "Status", "Settlement", "Time"].map((h) => (
-                  <th key={h} className="text-left text-xs text-zinc-500 uppercase tracking-wider pb-3 pr-4">{h}</th>
-                ))}
+              <tr>
+                <th>Transfer ID</th>
+                <th>Corridor</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Settlement</th>
+                <th>Time</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-zinc-800/50">
-              {(data?.transfers ?? []).length === 0 ? (
+            <tbody>
+              {transfers.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="py-8 text-center text-zinc-500">No transfers yet</td>
+                  <td colSpan={6} style={{ textAlign: "center", padding: "2.5rem 0", color: "var(--text-3)" }}>
+                    No transfers yet — initiate your first settlement
+                  </td>
                 </tr>
               ) : (
-                (data?.transfers ?? []).map((tx: TransferRow) => (  // ✅ typed here
-                  <tr key={tx.transfer_id} className="hover:bg-zinc-800/30 transition-colors">
-                    <td className="py-3 pr-4 font-mono text-xs text-zinc-400">{tx.transfer_id.slice(0, 12)}…</td>
-                    <td className="py-3 pr-4 font-mono text-xs text-zinc-300">{tx.corridor}</td>
-                    <td className="py-3 pr-4 font-semibold text-white">${tx.amount_usdc.toLocaleString()}</td>
-                    <td className="py-3 pr-4">
-                      <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${STATUS_STYLES[tx.status] ?? STATUS_STYLES.initiated}`}>
-                        {tx.status.replace(/_/g, " ")}
-                      </span>
-                    </td>
-                    <td className="py-3 pr-4 text-xs text-zinc-500">
-                      {tx.total_duration_ms ? `${(tx.total_duration_ms / 1000).toFixed(1)}s` : "—"}
-                    </td>
-                    <td className="py-3 text-xs text-zinc-500">
-                      {tx.initiated_at ? new Date(tx.initiated_at).toLocaleTimeString() : "—"}
-                    </td>
-                  </tr>
-                ))
+                transfers.map((tx: TransferRow) => {
+                  const s = STATUS_CONFIG[tx.status] ?? STATUS_CONFIG.initiated;
+                  return (
+                    <tr key={tx.transfer_id}>
+                      <td>
+                        <span style={{ fontFamily: "var(--font-mono)", color: "var(--text)", fontSize: "0.72rem" }}>
+                          {tx.transfer_id.slice(0, 14)}…
+                        </span>
+                      </td>
+                      <td>
+                        <span className="corridor-tag">{tx.corridor.replace("_", "→")}</span>
+                      </td>
+                      <td>
+                        <span style={{ fontWeight: 700, color: "var(--text)" }} className="tabular">
+                          ${tx.amount_usdc.toLocaleString()}
+                        </span>
+                      </td>
+                      <td>
+                        <span className={`badge ${s.cls}`}>{s.label}</span>
+                      </td>
+                      <td className="tabular">
+                        {tx.total_duration_ms
+                          ? <span style={{ color: "var(--teal)" }}>{(tx.total_duration_ms / 1000).toFixed(1)}s</span>
+                          : <span style={{ color: "var(--text-3)" }}>—</span>
+                        }
+                      </td>
+                      <td style={{ color: "var(--text-3)", fontSize: "0.72rem" }}>
+                        {tx.initiated_at ? new Date(tx.initiated_at).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) : "—"}
+                      </td>
+                    </tr>
+                  );
+                })
               )}
             </tbody>
           </table>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }
