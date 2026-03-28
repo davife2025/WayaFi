@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "dotenv -e .env -- tsx watch src/index.ts",
     "build": "tsup src/index.ts --format cjs --out-dir dist --no-splitting --external @irofi/compliance --external @irofi/oracle --external @irofi/ramp --external @irofi/travel-rule --external @irofi/types",
-    "start": "dotenv -e .env -- node dist/index.js",
+    "start": "node dist/index.js", 
     "lint": "echo lint",
     "test": "vitest run",
     "db:push": "drizzle-kit push",
