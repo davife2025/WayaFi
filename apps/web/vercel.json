@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "buildCommand": "cd ../.. && pnpm install && pnpm --filter @irofi/types build && pnpm --filter @irofi/sdk build && pnpm --filter @irofi/web build",
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://irofi-api.onrender.com/v1/:path*"
+    }
+  ]
+}
