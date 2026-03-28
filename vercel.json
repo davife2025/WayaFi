@@ -1,5 +1,5 @@
 {
-  "outputDirectory": "apps/api/dist",
+  "outputDirectory": "dist",
   "buildCommand": "pnpm turbo build --filter=@irofi/api",
   "installCommand": "pnpm install",
   "framework": null
