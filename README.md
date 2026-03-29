@@ -4,8 +4,6 @@
 
 WayaFi is a compliance-first, production-grade USDC settlement infrastructure enabling African banks, fintechs, and corporate treasuries to move money across borders in seconds — without correspondent banking, without prefunded nostro accounts, and without routing through New York or London.
 
-Built for the [StableHacks 2026](https://colosseum.org) hackathon — **Cross-Border Stablecoin Treasury** track.
-
 ---
 
 <div align="center">
