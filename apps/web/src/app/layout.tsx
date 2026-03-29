@@ -3,7 +3,7 @@ import "./globals.css";
 import { Providers } from "./providers";
 
 export const metadata: Metadata = {
-  title: "IroFi — Institutional Cross-Border Treasury",
+  title: "WayaFi — Institutional Cross-Border Treasury",
   description: "Compliance-first stablecoin treasury rails for Africa, built on Solana.",
 };
 
