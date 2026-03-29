@@ -47,7 +47,7 @@ function ConnectGate() {
           background: "var(--bg-2)", border: "1px solid var(--border-accent)",
           marginBottom: "2rem", boxShadow: "0 0 32px var(--teal-glow)",
         }}>
-          <span style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "1.4rem", color: "var(--teal)" }}>WayaFi</span>
+          <span style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "1.4rem", color: "var(--teal)" }}>W</span>
         </div>
 
         <h1 style={{
@@ -55,7 +55,7 @@ function ConnectGate() {
           fontSize: "2.2rem", letterSpacing: "-0.04em",
           color: "var(--text)", lineHeight: 1, marginBottom: "0.75rem",
         }}>
-          Treasury
+          WayaFi Treasury
         </h1>
 
         <p style={{ color: "var(--text-2)", fontSize: "0.88rem", lineHeight: 1.6, marginBottom: "2.5rem" }}>
