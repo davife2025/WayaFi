@@ -1,7 +1,7 @@
 use anchor_lang::prelude::*;
 use anchor_spl::{token_2022, token_interface::{Mint, Token2022, TokenAccount}};
 
-declare_id!("9PqXXxZhaCSazYfWaBghkraY6XAXrrKBRgGcmJfPh33v");
+declare_id!("DdePVQRbR9MfjrnHbkWg8PB11EAHrRyLHVwFw7R96duu");
 
 #[program]
 pub mod treasury_pool {

@@ -3,40 +3,34 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "dotenv -e .env -- tsx watch src/index.ts",
+    "dev": "tsx watch src/index.ts",
     "build": "tsup src/index.ts --format cjs --out-dir dist --no-splitting --external @irofi/compliance --external @irofi/oracle --external @irofi/ramp --external @irofi/travel-rule --external @irofi/types",
     "start": "node dist/index.js",
     "lint": "echo lint",
     "test": "vitest run",
-    "db:push": "drizzle-kit push",
-    "db:studio": "drizzle-kit studio"
+    "db:push": "drizzle-kit push"
   },
   "dependencies": {
-    "@fastify/cors": "^9.0.0",
+    "fastify": "^4.26.0",
     "@fastify/jwt": "^8.0.0",
+    "@fastify/cors": "^9.0.0",
     "@fastify/rate-limit": "^9.0.0",
+    "drizzle-orm": "^0.30.0",
+    "postgres": "^3.4.0",
+    "@solana/web3.js": "^1.95.3",
+    "tweetnacl": "^1.0.3",
+    "bs58": "^5.0.0",
+    "pino-pretty": "^11.0.0",
     "@irofi/compliance": "workspace:*",
     "@irofi/oracle": "workspace:*",
     "@irofi/ramp": "workspace:*",
     "@irofi/travel-rule": "workspace:*",
     "@irofi/types": "workspace:*",
-    "@solana/web3.js": "^1.95.3",
-    "bs58": "^5.0.0",
-    "drizzle-orm": "^0.30.0",
-    "fastify": "^4.26.0",
-    "pino-pretty": "^11.0.0",
-    "postgres": "^3.4.0",
-    "tweetnacl": "^1.0.3"
-  },
-  "devDependencies": {
-    "@types/node": "^20.0.0",
-    "@types/pino": "^7.0.5",
-    "dotenv-cli": "^7.4.4",
-    "drizzle-kit": "^0.20.0",
-    "pino": "^10.3.1",
     "tsup": "^8.0.0",
     "tsx": "^4.7.0",
     "typescript": "^5.4.0",
-    "vitest": "^1.0.0"
+    "@types/node": "^20.0.0",
+    "vitest": "^1.0.0",
+    "drizzle-kit": "^0.20.0"
   }
 }

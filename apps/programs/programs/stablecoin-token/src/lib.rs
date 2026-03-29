@@ -4,7 +4,7 @@ use anchor_spl::{
     token_interface::{Mint, Token2022, TokenAccount},
 };
 
-declare_id!("GNVTi1JnpH4HuKxzQqMiRCBr45KvJwZEkKXjYQUGzhyF");
+declare_id!("3tSx55N8qa6ciSF82Q5CBW6EehiN8EipPiPnqGei2493");
 
 /// IroFi Stablecoin Token Program
 /// Token-2022 mint with Transfer Hook, Default Account State, Required Memo

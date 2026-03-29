@@ -6,10 +6,10 @@ resolution = true
 skip-lint = false
 
 [programs.devnet]
-stablecoin_token = "GNVTi1JnpH4HuKxzQqMiRCBr45KvJwZEkKXjYQUGzhyF"
-treasury_pool    = "9PqXXxZhaCSazYfWaBghkraY6XAXrrKBRgGcmJfPh33v"
-transfer_hook    = "BddZGhh7n4KVVYZYbmkMMntYr8pnDWGK8h6wmN9SDKXF"
-routing_logic    = "AP9W5NNiSWnb8Coyd4MTWwCb1RTTUjkWgFErANRvVus4"
+routing_logic = "HHCdyggv7dbqAiCGNShCFEwMWT8gdCPhmE6WtBJoFosJ"
+stablecoin_token = "3tSx55N8qa6ciSF82Q5CBW6EehiN8EipPiPnqGei2493"
+transfer_hook = "HKvGfDBHAXMH3N3xacDKYToFQGfhs7z5zKX8q53DEx8U"
+treasury_pool = "DdePVQRbR9MfjrnHbkWg8PB11EAHrRyLHVwFw7R96duu"
 
 [registry]
 url = "https://api.apr.dev"
